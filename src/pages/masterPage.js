@@ -1,10 +1,14 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+import { getCurrentLanguage, toggleLanguage } from 'public/language';
+import wixLocation from 'wix-location';
 
 $w.onReady(function () {
-    // Write your JavaScript here
+    const lang = getCurrentLanguage();
 
-    // To select an element by ID use: $w('#elementID')
+    // Muestra el idioma al que cambiará al hacer clic
+    $w('#btnLanguage').label = lang === 'en' ? 'Español' : 'English';
 
-    // Click 'Preview' to run your code
+    $w('#btnLanguage').onClick(() => {
+        toggleLanguage();
+        wixLocation.to(wixLocation.url);
+    });
 });
